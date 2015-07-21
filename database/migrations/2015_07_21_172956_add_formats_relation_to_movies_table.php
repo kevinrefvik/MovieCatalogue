@@ -13,6 +13,7 @@ class AddFormatsRelationToMoviesTable extends Migration
     public function up()
     {
         Schema::table('movies', function (Blueprint $table) {
+            $table->dropColumn('format');
             $table->integer('format_id')->after('secondary_title');
         });
     }
@@ -25,6 +26,7 @@ class AddFormatsRelationToMoviesTable extends Migration
     public function down()
     {
         Schema::table('movies', function (Blueprint $table) {
+            $table->string('format');
             $table->dropColumn('format_id');
         });
     }

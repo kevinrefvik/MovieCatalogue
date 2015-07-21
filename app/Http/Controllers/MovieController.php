@@ -59,6 +59,11 @@ class MovieController extends Controller
     {
         $movie = new Movie;
         $movie->title = $request->title;
+        $movie->secondary_title = $request->secondary_title;
+        $movie->favourite = $request->input('favourite', 0);
+        $movie->watched = $request->input('watched', 0);
+        $movie->format_id = $request->format;
+        $movie->category_id = $request->category;
         $movie->save();
 
         return redirect('movie');

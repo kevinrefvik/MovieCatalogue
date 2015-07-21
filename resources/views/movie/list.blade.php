@@ -15,13 +15,13 @@
 
 		<p>
 			@foreach ($formats as $format)
-				<input type="radio" name="format" id="format_{{ str_slug($format->name) }}"> <label for="format_{{ str_slug($format->name) }}">{{ $format->name }}</label>
+				<input type="radio" name="format" id="format_{{ str_slug($format->name) }}" value="{{ $format->id }}"> <label for="format_{{ str_slug($format->name) }}">{{ $format->name }}</label>
 			@endforeach
 		</p>
 		
 		<p>
 			@foreach ($categories as $category)
-				<input type="radio" name="category" id="category_{{ str_slug($category->name) }}"> <label for="category_{{ str_slug($category->name) }}">{{ $category->name }}</label>
+				<input type="radio" name="category" id="category_{{ str_slug($category->name) }}" value="{{ $category->id }}"> <label for="category_{{ str_slug($category->name) }}">{{ $category->name }}</label>
 			@endforeach
 		</p>
 		<p><button type="submit">Add</button></p>
@@ -61,7 +61,7 @@
 				<td>{{ $movie->title }}</td>
 				<td>{{ $movie->favourite ? '[F]' : '' }}</td>
 				<td>{{ !$movie->watched ? '[N]' : '' }}</td>
-				<td>{{ $movie->format }}</td>
+				<td>{{ $movie->format->name }}</td>
 				<td>{{ $movie->category->name }}</td>
 			</tr>
 		@endforeach
