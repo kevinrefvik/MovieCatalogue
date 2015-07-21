@@ -1,7 +1,7 @@
 <h1>Movie Catalogue</h1>
 
 <h2>Add movie</h2>
-@if (count($categories))
+@if (count($formats) && count($categories))
 	<form method="POST" action="/movie">
 		<input type="hidden" name="_method" value="POST">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -14,24 +14,31 @@
 		</p>
 
 		<p>
-			<input type="radio" name="format"> Blu-ray
-			<input type="radio" name="format"> Blu-ray 3D
-			<input type="radio" name="format"> DVD<br>
+			@foreach ($formats as $format)
+				<input type="radio" name="format" id="format_{{ str_slug($format->name) }}"> <label for="format_{{ str_slug($format->name) }}">{{ $format->name }}</label>
+			@endforeach
 		</p>
 		
 		<p>
 			@foreach ($categories as $category)
-				<input type="radio" name="format"> {{ $category->name }}
+				<input type="radio" name="category" id="category_{{ str_slug($category->name) }}"> <label for="category_{{ str_slug($category->name) }}">{{ $category->name }}</label>
 			@endforeach
 		</p>
 		<p><button type="submit">Add</button></p>
 	</form>
 @else
-	<p>Please add some categories first!</p>
+	<p>Please add some formats and categories first!</p>
 @endif
 
-<h2>Add category</h2>
+<h2>Add format</h2>
+<form method="POST" action="/format">
+	<input type="hidden" name="_method" value="POST">
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	<input type="text" name="name" placeholder="Name">
+	<button type="submit">Add</button>
+</form>
 
+<h2>Add category</h2>
 <form method="POST" action="/category">
 	<input type="hidden" name="_method" value="POST">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">

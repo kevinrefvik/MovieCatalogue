@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Movie;
+use App\Format;
 use App\Category;
 
 class MovieController extends Controller
@@ -32,6 +33,7 @@ class MovieController extends Controller
         }
 
         $with['movies'] = $movies;
+        $with['formats'] = Format::all();
         $with['categories'] = Category::all();
 
         return \View::make('movie.list')->with($with);

@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Category;
+use App\Format;
 
-class CategoryController extends Controller
+class FormatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,9 +39,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category;
-        $category->name = $request->name;
-        $category->save();
+        $format = new Format;
+        $format->name = $request->name;
+        $format->save();
 
         return redirect('movie');
     }

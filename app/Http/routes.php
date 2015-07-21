@@ -12,6 +12,7 @@
 */
 
 Route::resource('movie', 'MovieController');
+Route::resource('format', 'FormatController');
 Route::resource('category', 'CategoryController');
 
 Route::get('/', function () {
